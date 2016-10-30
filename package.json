@@ -2,6 +2,7 @@
   "name": "dopl",
   "version": "0.1.0",
   "bin": "bin/dopl.js",
+  "main": "lib/index.js",
   "repository": {
     "url": "git@github.com:krambuhl/dopl.git",
     "type": "git"
@@ -14,6 +15,7 @@
     "fs-writefile-promise": "^1.0.3",
     "glob": "^7.1.1",
     "gulp": "^3.9.1",
+    "mkdirp": "^0.5.1",
     "mustache": "^2.2.1"
   }
 }
