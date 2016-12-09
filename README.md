@@ -9,41 +9,41 @@ Use dopl to make a new directory based on a template directory.  Processes each 
 const dopl = require('dopl');
 
 dopl({
-  name: 'heading',
-  src: 'templates/simple-component',
-  output: 'source', 
+  src: 'templates/simple-thing',
+  output: 'source/things', 
   data: {
+    name: 'wow-a-thing'
     timestamp: +new Date()
   }
 })
 .then(() => {
-  console.log(`${name} created!`);
+  console.log(`wow-a-thing was created!`);
 });
 ```
 
 
 ## Options
 
-`name` –– name of new directory
-
 `src` –– directory to use as a template
 
-`output` –– directory to output copy
+`output` –– directory to output new copy 
 
 `data` –– data to pass into mustache
 
-`render` –– function with the form `fn(file, data)` for rendering files, if you'd like to replace mustache with another templating engine.
+`render` –– function with the form `(file, data) => String` for rendering files, if you'd like to replace mustache with another templating engine.
 
 
 ## Filename Interpolation
 
-Filenames with `[name]` included will be replaced with `name` option.
+Filenames with `[$key]` included will be replaced with `name` option.
 
 ```
 // config
 dopl({
-    name: 'mega',
-    output: 'dist'
+    output: 'dist',
+    data: {
+        name: 'mega'
+    }
 })
 
 // input file
@@ -67,10 +67,11 @@ npm install dopl
 
 ```npm
 npm install dopl -g
+dopl --help
 ```
 
 ```
-dopl --src templates/original --output source/directory new-copy
+dopl --src templates/original --output source/directory/new-copy --data '{"name": "mega"}'
 ```
 
 
