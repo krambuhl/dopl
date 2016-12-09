@@ -4,7 +4,6 @@ const pkg = require('../package.json');
 
 const dopl = require('../lib/index');
 
-let name;
 program
   .version(pkg.version)
   .option(
@@ -15,14 +14,17 @@ program
     '-o, --output [dir]', 
     '(optional) sets output directory, defaults to process.cwd()'
   )
-  .arguments('<name>').action(title => name = title)
+  .option(
+    '-d, --data [json]', 
+    '(optional) data to use in filename interpolation and templates',
+    val => JSON.parse(val)
+  )
   .parse(process.argv);
 
-
 dopl({
-  name,
   src: program.src,
-  output: program.output
+  output: program.output,
+  data: program.data
 })
 .then(() => {
   console.log(`${name} component created successfully!`);
